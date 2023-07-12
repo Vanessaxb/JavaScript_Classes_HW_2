@@ -11,8 +11,7 @@ class Governor {
 console.log(Governor.integrity());
 console.log(Governor.background());
 
-// static addCohort(newCohort) {
-//     this.cohorts.push(newCohort);
+//*Inheritance
 
 class Person{
     constructor(name, age, maritalstatus){
@@ -36,16 +35,17 @@ class Person{
 }
 class PostalWorker extends Person {
     delivery() {
-        console.log('You\'ve got mail');
+        return 'You\'ve got mail!';
     }
     delay() {
-      console.log(`No mail for ${this.name} today`);  
+    //   console.log(`No mail for ${this.name} today`);//! why if I change to console log it gives me undefinined on line 61?  
+      return `No mail for ${this.name} today`
     }
 }
 
 class Chef extends Person {
     dinner() {
-        console.log(`${this.name}, what would you like for dinnner?`);
+        return `${this.name}, what would you like for dinnner?`;
     }
     dessert() {
         return 'getting full'
@@ -57,3 +57,36 @@ const PostalWorker2 = new PostalWorker('Mia', '20', 'single');
 const Chef1 = new Chef('Michael', '42', 'married');
 const Chef2 = new Chef('Becky', '50', 'married');
 console.log(Chef1.dessert());
+console.log(Chef2.dinner());
+console.log(PostalWorker1.delay());
+console.log(PostalWorker2.delivery());
+
+//*Hungry for more
+
+class BankAccount {
+    constructor (ownerName, balance, acctNum) {
+        this.ownerName = ownerName;
+        this.balance = balance;
+        this.acctNum = acctNum
+    }
+    deposit(amount) {
+        return this.balance + amount
+    }
+
+    withdraw(number) {
+        return this.balance - number
+    }
+}
+
+class CheckingAccount extends BankAccount {
+    constructor (overdraftEnabled) {
+    // allow() {}
+            //!how override withdraw to implement overdraft feature???
+
+    }   
+}
+
+class SavingsAccount extends BankAccount {
+    disallow() {}
+    //!Override withdrawto disallow withdrawals completely :)
+}
