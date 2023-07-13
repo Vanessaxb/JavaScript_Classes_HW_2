@@ -48,7 +48,7 @@ class Chef extends Person {
         return `${this.name}, what would you like for dinnner?`;
     }
     dessert() {
-        return 'getting full'
+        return 'Getting full'
     }
 }
 
@@ -64,29 +64,58 @@ console.log(PostalWorker2.delivery());
 //*Hungry for more
 
 class BankAccount {
-    constructor (ownerName, balance, acctNum) {
+    constructor (ownerName, balance = 0, acctNum) {
         this.ownerName = ownerName;
         this.balance = balance;
         this.acctNum = acctNum
     }
     deposit(amount) {
-        return this.balance + amount
+        return this.balance += amount
     }
 
-    withdraw(number) {
-        return this.balance - number
+    withdraw(amount) {
+        return this.balance -= amount
     }
 }
 
 class CheckingAccount extends BankAccount {
-    constructor (overdraftEnabled) {
-    // allow() {}
-            //!how override withdraw to implement overdraft feature???
-
+    constructor (ownerName, balance, acctNum, overdraftEnabled) {
+        super(ownerName, balance, acctNum);
+        if (overdraftEnabled === true) {
+            this.balance -= amount
+        }    
     }   
 }
+const CheckingAccount1 = new CheckingAccount('John', 100, 1 )
+CheckingAccount1.withdraw(50)
+console.log(CheckingAccount1);
+
 
 class SavingsAccount extends BankAccount {
-    disallow() {}
-    //!Override withdrawto disallow withdrawals completely :)
+    constructor (ownerName, balance, acctNum) {
+        super(ownerName, balance, acctNum);
+        
+         
+        // console.log(amount);
+    } 
+    deposit(amount) {
+        return this.balance += amount
+    }
+
+    withdraw(amount) {
+        if (this.balance <= amount) {
+            console.log(`Withdraw not allowed, current balance ${this.balance}`);
+            // return this.balance
+        } else { 
+            console.log(`Your NEW balance ${this.balance}`);
+            return this.balance -= amount }
+
+    }
 }
+
+const SavingsAccount1 = new SavingsAccount('Mary', 50, 2, false)
+SavingsAccount1.withdraw(40)
+console.log(SavingsAccount1);
+
+
+
